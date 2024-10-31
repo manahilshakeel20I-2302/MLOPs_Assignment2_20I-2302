@@ -6,7 +6,6 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash
 import secrets
-import traceback
 import logging
 from dotenv import load_dotenv
 import os

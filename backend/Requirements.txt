@@ -1,4 +1,8 @@
 Flask
-Flask-CORS
-Flask-SQLAlchemy
-psycopg2-binary
+Flask-Cors
+Flask-Mail
+Flask-PyMongo
+Flask-JWT-Extended
+python-dotenv
+pymongo
+werkzeug
