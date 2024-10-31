@@ -1,32 +1,35 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { login } from '../api';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await login({ username, password });
-      localStorage.setItem('token', response.data.access_token);
-      // Redirect or perform other actions
+      const response = await login({ email, password });
+      setSuccess('Login successful!'); // Display success message
+      setError('');
+      // Redirect or perform further actions with the response (e.g., storing token)
     } catch (err) {
-      setError('Invalid username or password');
+      setError('Invalid username or password'); // Display error message
+      setSuccess('');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
-      {error && <p>{error}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
       <input
         type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         required
       />
       <input
