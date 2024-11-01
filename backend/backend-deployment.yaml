@@ -14,13 +14,22 @@ spec:
     spec:
       containers:
         - name: backend
-          image: your-backend-image
+          image: manahil20i2302/mlops_assignment2_20i-2302-backend:latest
           ports:
             - containerPort: 5000
           env:
             - name: MONGO_URI
-              value: mongodb://mongo:27017/yourdbname
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets  # Name of the secret
+                  key: MONGO_URI         # Key for the Mongo URI
             - name: MAIL_USERNAME
-              value: your-email@example.com
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets  # Name of the secret
+                  key: MAIL_USERNAME      # Key for the mail username
             - name: MAIL_PASSWORD
-              value: your-email-password
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets  # Name of the secret
+                  key: MAIL_PASSWORD      # Key for the mail password
